@@ -12,6 +12,23 @@
 #import "ARTrackManager.h"
 #import "USBResource.h"
 
+%hook SpringBoard
+
+- (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event{
+    if (motion == UIEventSubtypeMotionShake) {
+        [[[UIAlertView alloc] initWithTitle:@"Warn" message:@"Respring" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil] show];
+    }
+}
+
+%new
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex {
+    if (buttonIndex != 0) {
+        exit(0);
+    }
+}
+
+%end
+
 %hook SBIconScrollView
 
 %property (nonatomic) UIButton *ultimateBtn;
@@ -26,6 +43,8 @@
     
     for (UIWindow *window in [UIApplication sharedApplication].windows) {
         if ([window isKindOfClass:NSClassFromString(@"SBHomeScreenWindow")]) {
+            [USBDataManager sharedInstance].window = window;
+            [USBDataManager sharedInstance].vc = window.rootViewController;
             CGSize screenSize = [UIScreen mainScreen].bounds.size;
             CGFloat btnW = 60;
             CGFloat btnH = 60;
@@ -111,10 +130,40 @@
     CGRect rect = (CGRect){0, 0, scrollView.contentSize};
     UIGraphicsBeginImageContextWithOptions(rect.size, false, [UIScreen mainScreen].scale);
     [scrollView.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIImage *middleImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImage *topImage = [USBResource imageNamed:@"camera.png"];
+    UIImage *bottomImage = [USBResource imageNamed:@"earth.png"];
+    CGFloat imageMargin = 480;
+    CGFloat marginH = 80;
+    CGFloat topImageW = 120;
+    CGFloat topImageH = 89;
+    CGFloat bottomImageW = 120;
+    CGFloat bottomImageH = 120;
+    CGSize ctxSize = CGSizeMake(middleImage.size.width, middleImage.size.height + topImageH + bottomImageH + imageMargin * 4);
+    UIGraphicsBeginImageContextWithOptions(ctxSize, NO, [UIScreen mainScreen].scale);
+    // add top image: camera
+    CGFloat topImageX = marginH;
+    CGFloat topImageY = topImageH + imageMargin;
+    NSInteger count = (ctxSize.width - marginH) / (topImageW + marginH);
+    for (NSInteger i = 0; i < count; i++) {
+        [topImage drawInRect:CGRectMake(topImageX, topImageY, topImageW, topImageH)];
+        topImageX += topImageW + marginH;
+    }
+    // add middle image: desktop
+    [middleImage drawInRect:CGRectMake(0, topImageH + imageMargin * 2, middleImage.size.width, middleImage.size.height)];
+    // add bottom image: earth
+    CGFloat bottomImageX = marginH;
+    CGFloat bottomImageY = ctxSize.height - imageMargin - bottomImageH;
+    count = (ctxSize.width - marginH) / (bottomImageW + marginH);
+    for (NSInteger i = 0; i < count; i++) {
+        [bottomImage drawInRect:CGRectMake(bottomImageX, bottomImageY, bottomImageW, bottomImageH)];
+        bottomImageX += bottomImageW + marginH;
+    }
     UIImage *snapshot = UIGraphicsGetImageFromCurrentImageContext();
-    [UIImagePNGRepresentation(snapshot) writeToFile: @"/tmp/springboard.png" atomically:YES];
     UIGraphicsEndImageContext();
     [USBDataManager sharedInstance].snapshot = snapshot;
+    //    [UIImagePNGRepresentation(snapshot) writeToFile: @"/tmp/springboard.png" atomically:YES];
     return snapshot;
 }
 
@@ -151,6 +200,8 @@
 - (void)startMotion {
     __block bool hasShowReady = 0;
     [[ARTrackManager sharedManager] startTracking];
+    [USBDataManager sharedInstance].resignBtn.hidden = 0;
+    [USBDataManager sharedInstance].closeBtn.hidden = 0;
     // start rotate
     CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     rotationAnimation.toValue = @(M_PI * 2.0);
@@ -162,9 +213,11 @@
     if (initX < 0) {
         initX = 0;
     }
+    float initY = 1200;
     [[ARTrackManager sharedManager].callbacks addObject:^(float dx, float dy, float dz) {
         int offsetX = dx * 3500 + initX;
-//        [@(offsetX).description writeToFile:@"/tmp/tick.txt" atomically:1 encoding:4 error:nil];
+        int offsetY = -dy * 3500 + initY;
+        [@(offsetY).description writeToFile:@"/tmp/tick.txt" atomically:1 encoding:4 error:nil];
         dispatch_async(dispatch_get_main_queue(), ^{
             if (!hasShowReady) {
                 hasShowReady = 1;
@@ -180,7 +233,19 @@
             } else if (cf.x > [USBDataManager sharedInstance].fakeScrollView.contentSize.width - self.frame.size.width) {
                 cf.x = [USBDataManager sharedInstance].fakeScrollView.contentSize.width - self.frame.size.width;
             }
+            cf.y = offsetY;
             [USBDataManager sharedInstance].fakeScrollView.contentOffset = cf;
+            if (cf.y < -400) {
+                [USBDataManager sharedInstance].ultimateBtn.hidden = 1;
+                [self performSelector:@selector(autoStop)];
+                UIImagePickerController *upc = [UIImagePickerController new];
+                upc.delegate = (id)self;
+                upc.sourceType = UIImagePickerControllerSourceTypeCamera;
+                [[USBDataManager sharedInstance].window.rootViewController presentViewController:upc animated:YES completion:nil];
+            } else if (cf.y > 1800) {
+                [self performSelector:@selector(autoStop)];
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"iosamap://"]];
+            }
         });
     }];
 }
@@ -192,14 +257,18 @@
 }
 
 %new
+- (void)autoStop {
+    [self performSelector:@selector(quitUltimateMode)];
+    [USBDataManager sharedInstance].ultimateBtn.selected = 0;
+}
+
+%new
 - (void)showToolbar {
     UIButton *ultimateBtn = [USBDataManager sharedInstance].ultimateBtn;
     [ultimateBtn.layer removeAnimationForKey:@"rotate"];
     [UIView animateWithDuration:0.5 animations:^{
         ultimateBtn.transform = CGAffineTransformTranslate(CGAffineTransformIdentity, 0, -50);
     }];
-    [USBDataManager sharedInstance].resignBtn.hidden = 0;
-    [USBDataManager sharedInstance].closeBtn.hidden = 0;
 }
 
 %new
@@ -210,6 +279,27 @@
     }];
     [USBDataManager sharedInstance].resignBtn.hidden = 1;
     [USBDataManager sharedInstance].closeBtn.hidden = 1;
+}
+
+%new
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingImage:(UIImage *)image editingInfo:(NSDictionary<NSString *,id> *)editingInfo {
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [USBDataManager sharedInstance].ultimateBtn.hidden = 0;
+    }];
+}
+
+%new
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [USBDataManager sharedInstance].ultimateBtn.hidden = 0;
+    }];
+}
+
+%new
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [USBDataManager sharedInstance].ultimateBtn.hidden = 0;
+    }];
 }
 
 %end

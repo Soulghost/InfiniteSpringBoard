@@ -14,6 +14,8 @@
 @property (nonatomic, strong) UIButton *ultimateBtn;
 @property (nonatomic, strong) UIButton *resignBtn;
 @property (nonatomic, strong) UIButton *closeBtn;
+@property (nonatomic, strong) UIWindow *window;
+@property (nonatomic, strong) UIViewController *vc;
 
 + (instancetype)sharedInstance;
 
