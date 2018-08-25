@@ -5,6 +5,9 @@
 通过在越狱环境下修改SpringBoard.app，实现了一个iOS桌面的无限屏模式，实拍效果如下:
 ![](https://user-gold-cdn.xitu.io/2018/8/24/1656c7844421c5e6?w=512&h=290&f=gif&s=4083845)
 
+## 掘金原文
+[https://juejin.im/post/5b801cede51d4538a108af56](https://juejin.im/post/5b801cede51d4538a108af56)
+
 ### 配置
 1. 打开Xcode工程
 2. 打开UltimateSpringBoard Target的Build Settings，配置User-Defined的Settings中的MonkeyDevDeviceIP、Port等信息，这些信息用于在Theos构建后自动将deb传输和安装到手机
