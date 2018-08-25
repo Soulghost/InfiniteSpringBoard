@@ -16,6 +16,7 @@
 @property (nonatomic, strong) UIButton *closeBtn;
 @property (nonatomic, strong) UIWindow *window;
 @property (nonatomic, strong) UIViewController *vc;
+@property (nonatomic, strong) UIScrollView *desktopScrollView;
 
 + (instancetype)sharedInstance;
 

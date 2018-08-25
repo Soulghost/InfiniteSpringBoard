@@ -15,8 +15,12 @@
 %hook SpringBoard
 
 - (void)motionBegan:(UIEventSubtype)motion withEvent:(UIEvent *)event{
-    if (motion == UIEventSubtypeMotionShake) {
-        [[[UIAlertView alloc] initWithTitle:@"Warn" message:@"Respring" delegate:self cancelButtonTitle:@"NO" otherButtonTitles:@"YES", nil] show];
+    if ([USBDataManager sharedInstance].fakeScrollView) {
+        UIScrollView *scrollView = [USBDataManager sharedInstance].fakeScrollView;
+        if ([scrollView isKindOfClass:[UIScrollView class]]) {
+            [USBDataManager sharedInstance].desktopScrollView.hidden = NO;
+            [scrollView removeFromSuperview];
+        }
     }
 }
 
@@ -40,7 +44,7 @@
         return;
     }
     objc_setAssociatedObject(self, key, @"", OBJC_ASSOCIATION_RETAIN);
-    
+    [USBDataManager sharedInstance].desktopScrollView = self;
     for (UIWindow *window in [UIApplication sharedApplication].windows) {
         if ([window isKindOfClass:NSClassFromString(@"SBHomeScreenWindow")]) {
             [USBDataManager sharedInstance].window = window;
@@ -134,7 +138,7 @@
     UIGraphicsEndImageContext();
     UIImage *topImage = [USBResource imageNamed:@"camera.png"];
     UIImage *bottomImage = [USBResource imageNamed:@"earth.png"];
-    CGFloat imageMargin = 480;
+    CGFloat imageMargin = 320;
     CGFloat marginH = 80;
     CGFloat topImageW = 120;
     CGFloat topImageH = 89;
@@ -235,13 +239,14 @@
             }
             cf.y = offsetY;
             [USBDataManager sharedInstance].fakeScrollView.contentOffset = cf;
-            if (cf.y < -400) {
-                [USBDataManager sharedInstance].ultimateBtn.hidden = 1;
-                [self performSelector:@selector(autoStop)];
+            if (cf.y < 0) {
                 UIImagePickerController *upc = [UIImagePickerController new];
                 upc.delegate = (id)self;
                 upc.sourceType = UIImagePickerControllerSourceTypeCamera;
-                [[USBDataManager sharedInstance].window.rootViewController presentViewController:upc animated:YES completion:nil];
+                [[USBDataManager sharedInstance].window.rootViewController presentViewController:upc animated:YES completion:^{
+                    [USBDataManager sharedInstance].ultimateBtn.hidden = 1;
+                    [self performSelector:@selector(autoStop)];
+                }];
             } else if (cf.y > 1800) {
                 [self performSelector:@selector(autoStop)];
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"iosamap://"]];
