@@ -6,7 +6,6 @@
 #import <QuartzCore/CATransform3D.h>
 #import <CoreMotion/CoreMotion.h>
 #import <CoreMotion/CMMotionManager.h>
-#include "USBMotionDetect.xm"
 #import "USBDataManager.h"
 #import "USBMotionManager.h"
 #import "ARTrackManager.h"

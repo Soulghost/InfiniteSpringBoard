@@ -14,17 +14,16 @@
 		686F4AF0212D0F2000B15DD6 /* SBIconScrollView.h in Headers */ = {isa = PBXBuildFile; fileRef = 686F4AEE212D0F2000B15DD6 /* SBIconScrollView.h */; };
 		686F4AF3212D34AB00B15DD6 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 686F4AF2212D34AB00B15DD6 /* QuartzCore.framework */; };
 		686F4AF5212D3D7B00B15DD6 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 686F4AF4212D3D7B00B15DD6 /* CoreMotion.framework */; };
-		686F4B20212DA07E00B15DD6 /* USBMotionDetect.xm in Sources */ = {isa = PBXBuildFile; fileRef = 686F4B1F212DA07E00B15DD6 /* USBMotionDetect.xm */; };
 		686F4B24212DA12500B15DD6 /* USBDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 686F4B22212DA12500B15DD6 /* USBDataManager.h */; };
 		686F4B25212DA12500B15DD6 /* USBDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F4B23212DA12500B15DD6 /* USBDataManager.m */; };
 		686F4B2B212DA5EB00B15DD6 /* USBMotionManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 686F4B29212DA5EB00B15DD6 /* USBMotionManager.h */; };
 		686F4B2C212DA5EB00B15DD6 /* USBMotionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F4B2A212DA5EB00B15DD6 /* USBMotionManager.m */; };
-		686F4B82212EC38F00B15DD6 /* ARTrackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F4B80212EC38F00B15DD6 /* ARTrackManager.m */; };
-		686F4B83212EC38F00B15DD6 /* ARTrackManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 686F4B81212EC38F00B15DD6 /* ARTrackManager.h */; };
 		686F4B85212EC41E00B15DD6 /* ARKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 686F4B84212EC41E00B15DD6 /* ARKit.framework */; };
 		686F4B8C212EDF5300B15DD6 /* USBResource.h in Headers */ = {isa = PBXBuildFile; fileRef = 686F4B8A212EDF5300B15DD6 /* USBResource.h */; };
 		686F4B8D212EDF5300B15DD6 /* USBResource.m in Sources */ = {isa = PBXBuildFile; fileRef = 686F4B8B212EDF5300B15DD6 /* USBResource.m */; };
 		686F4B8F212EEB5100B15DD6 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 686F4B8E212EEB5100B15DD6 /* CoreGraphics.framework */; };
+		68AA5A722130F144003A81B7 /* ARTrackManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 68AA5A702130F144003A81B7 /* ARTrackManager.m */; };
+		68AA5A732130F144003A81B7 /* ARTrackManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 68AA5A712130F144003A81B7 /* ARTrackManager.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,18 +39,17 @@
 		686F4AEE212D0F2000B15DD6 /* SBIconScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBIconScrollView.h; sourceTree = "<group>"; };
 		686F4AF2212D34AB00B15DD6 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		686F4AF4212D3D7B00B15DD6 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
-		686F4B1F212DA07E00B15DD6 /* USBMotionDetect.xm */ = {isa = PBXFileReference; lastKnownFileType = text; path = USBMotionDetect.xm; sourceTree = "<group>"; };
 		686F4B22212DA12500B15DD6 /* USBDataManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = USBDataManager.h; sourceTree = "<group>"; };
 		686F4B23212DA12500B15DD6 /* USBDataManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = USBDataManager.m; sourceTree = "<group>"; };
 		686F4B29212DA5EB00B15DD6 /* USBMotionManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = USBMotionManager.h; sourceTree = "<group>"; };
 		686F4B2A212DA5EB00B15DD6 /* USBMotionManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = USBMotionManager.m; sourceTree = "<group>"; };
-		686F4B80212EC38F00B15DD6 /* ARTrackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTrackManager.m; sourceTree = "<group>"; };
-		686F4B81212EC38F00B15DD6 /* ARTrackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTrackManager.h; sourceTree = "<group>"; };
 		686F4B84212EC41E00B15DD6 /* ARKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ARKit.framework; path = System/Library/Frameworks/ARKit.framework; sourceTree = SDKROOT; };
 		686F4B86212ED44000B15DD6 /* USBIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = USBIcons.xcassets; sourceTree = "<group>"; };
 		686F4B8A212EDF5300B15DD6 /* USBResource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = USBResource.h; sourceTree = "<group>"; };
 		686F4B8B212EDF5300B15DD6 /* USBResource.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = USBResource.m; sourceTree = "<group>"; };
 		686F4B8E212EEB5100B15DD6 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		68AA5A702130F144003A81B7 /* ARTrackManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ARTrackManager.m; sourceTree = "<group>"; };
+		68AA5A712130F144003A81B7 /* ARTrackManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARTrackManager.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,13 +104,10 @@
 		686F4ADC212D097800B15DD6 /* UltimateSpringBoard */ = {
 			isa = PBXGroup;
 			children = (
+				68AA5A6F2130F144003A81B7 /* Tracing */,
 				686F4B89212EDF0100B15DD6 /* Resource */,
-				686F4B7F212EC38F00B15DD6 /* Tracing */,
 				686F4B28212DA5D100B15DD6 /* MotionManager */,
-				686F4B27212DA49F00B15DD6 /* xms */,
-				686F4B26212DA1EC00B15DD6 /* UIManager */,
 				686F4B21212DA10300B15DD6 /* DataManager */,
-				686F4B1F212DA07E00B15DD6 /* USBMotionDetect.xm */,
 				686F4AEE212D0F2000B15DD6 /* SBIconScrollView.h */,
 				686F4AE2212D097800B15DD6 /* UltimateSpringBoard.xmi */,
 				686F4AE3212D097800B15DD6 /* UltimateSpringBoard.mm */,
@@ -181,20 +176,6 @@
 			path = DataManager;
 			sourceTree = "<group>";
 		};
-		686F4B26212DA1EC00B15DD6 /* UIManager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = UIManager;
-			sourceTree = "<group>";
-		};
-		686F4B27212DA49F00B15DD6 /* xms */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = xms;
-			sourceTree = "<group>";
-		};
 		686F4B28212DA5D100B15DD6 /* MotionManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -202,16 +183,6 @@
 				686F4B2A212DA5EB00B15DD6 /* USBMotionManager.m */,
 			);
 			path = MotionManager;
-			sourceTree = "<group>";
-		};
-		686F4B7F212EC38F00B15DD6 /* Tracing */ = {
-			isa = PBXGroup;
-			children = (
-				686F4B80212EC38F00B15DD6 /* ARTrackManager.m */,
-				686F4B81212EC38F00B15DD6 /* ARTrackManager.h */,
-			);
-			name = Tracing;
-			path = ../../ARTracking/ARTracking/Tracing;
 			sourceTree = "<group>";
 		};
 		686F4B89212EDF0100B15DD6 /* Resource */ = {
@@ -223,6 +194,15 @@
 			path = Resource;
 			sourceTree = "<group>";
 		};
+		68AA5A6F2130F144003A81B7 /* Tracing */ = {
+			isa = PBXGroup;
+			children = (
+				68AA5A702130F144003A81B7 /* ARTrackManager.m */,
+				68AA5A712130F144003A81B7 /* ARTrackManager.h */,
+			);
+			path = Tracing;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -232,8 +212,8 @@
 			files = (
 				686F4B2B212DA5EB00B15DD6 /* USBMotionManager.h in Headers */,
 				686F4B8C212EDF5300B15DD6 /* USBResource.h in Headers */,
-				686F4B83212EC38F00B15DD6 /* ARTrackManager.h in Headers */,
 				686F4AF0212D0F2000B15DD6 /* SBIconScrollView.h in Headers */,
+				68AA5A732130F144003A81B7 /* ARTrackManager.h in Headers */,
 				686F4B24212DA12500B15DD6 /* USBDataManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -328,8 +308,7 @@
 				686F4B8D212EDF5300B15DD6 /* USBResource.m in Sources */,
 				686F4B2C212DA5EB00B15DD6 /* USBMotionManager.m in Sources */,
 				686F4AE4212D097800B15DD6 /* UltimateSpringBoard.mm in Sources */,
-				686F4B20212DA07E00B15DD6 /* USBMotionDetect.xm in Sources */,
-				686F4B82212EC38F00B15DD6 /* ARTrackManager.m in Sources */,
+				68AA5A722130F144003A81B7 /* ARTrackManager.m in Sources */,
 				686F4B25212DA12500B15DD6 /* USBDataManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
