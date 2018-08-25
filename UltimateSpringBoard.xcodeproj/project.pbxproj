@@ -33,7 +33,7 @@
 		686F4ADA212D097800B15DD6 /* CydiaSubstrate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CydiaSubstrate.framework; path = Library/Frameworks/CydiaSubstrate.framework; sourceTree = DEVELOPER_DIR; };
 		686F4ADF212D097800B15DD6 /* control */ = {isa = PBXFileReference; lastKnownFileType = text; name = control; path = Package/DEBIAN/control; sourceTree = "<group>"; };
 		686F4AE1212D097800B15DD6 /* UltimateSpringBoard-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UltimateSpringBoard-Prefix.pch"; sourceTree = "<group>"; };
-		686F4AE2212D097800B15DD6 /* UltimateSpringBoard.xmi */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = UltimateSpringBoard.xmi; sourceTree = "<group>"; };
+		686F4AE2212D097800B15DD6 /* UltimateSpringBoard.xm */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.objcpp; path = UltimateSpringBoard.xm; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		686F4AE3212D097800B15DD6 /* UltimateSpringBoard.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = UltimateSpringBoard.mm; sourceTree = "<group>"; };
 		686F4AE8212D097800B15DD6 /* UltimateSpringBoard.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = UltimateSpringBoard.plist; path = Package/Library/MobileSubstrate/DynamicLibraries/UltimateSpringBoard.plist; sourceTree = "<group>"; };
 		686F4AEE212D0F2000B15DD6 /* SBIconScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SBIconScrollView.h; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 				686F4B28212DA5D100B15DD6 /* MotionManager */,
 				686F4B21212DA10300B15DD6 /* DataManager */,
 				686F4AEE212D0F2000B15DD6 /* SBIconScrollView.h */,
-				686F4AE2212D097800B15DD6 /* UltimateSpringBoard.xmi */,
+				686F4AE2212D097800B15DD6 /* UltimateSpringBoard.xm */,
 				686F4AE3212D097800B15DD6 /* UltimateSpringBoard.mm */,
 				686F4ADD212D097800B15DD6 /* Package */,
 				686F4AE0212D097800B15DD6 /* Supporting Files */,
