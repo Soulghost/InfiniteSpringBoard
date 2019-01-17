@@ -9,6 +9,8 @@
 [https://juejin.im/post/5b801cede51d4538a108af56](https://juejin.im/post/5b801cede51d4538a108af56)
 
 ### 配置
+
+0. 安装[MonkeyDev](https://github.com/AloneMonkey/MonkeyDev)，作为越狱开发的自动化工具链
 1. 打开Xcode工程
 2. 打开UltimateSpringBoard Target的Build Settings，配置User-Defined的Settings中的MonkeyDevDeviceIP、Port等信息，这些信息用于在Theos构建后自动将deb传输和安装到手机
 3. 将工程根目录下的`arch/UltimateSpringBoard.bundle`利用scp命令传输到`/Library/MobileSubstrate/DynamicLibraries/`目录，这些是插件需要访问的资源
